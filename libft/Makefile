@@ -6,7 +6,7 @@
 #    By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/17 14:39:22 by plamusse          #+#    #+#              #
-#    Updated: 2018/04/25 19:25:34 by plamusse         ###   ########.fr        #
+#    Updated: 2018/06/13 15:42:31 by plamusse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,11 +95,6 @@ SRC = ft_abs.c \
 		ft_tolower.c \
 		ft_toupper.c \
 		ft_printf.c \
-		ft_vec3Add.c \
-		ft_vec3Dot.c \
-		ft_vec3Normalize.c \
-		ft_vec3Scale.c \
-		ft_vec3Sub.c \
 		get_next_line.c \
 	  	parser.c \
 	  	parsing_tools.c \

@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 08:35:25 by plamusse          #+#    #+#             */
-/*   Updated: 2018/04/25 19:25:31 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/06/14 15:42:59 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,15 +192,5 @@ void				ft_lst2c_del(t_list **alst,
 						void (*del)(void *, size_t));
 int					ft_lst2c_len(t_list *lst);
 t_list				*ft_lst2c_push_back(t_list **alst, t_list *new);
-
-/*
-**	Vector
-*/
-
-t_vec				ft_vec3Sub(t_vec v1, t_vec v2);
-double				ft_vec3Dot(t_vec v1, t_vec v2);
-t_vec				ft_vec3Normalize(t_vec v);
-t_vec				ft_vec3Scale(t_vec v, double scale);
-t_vec				ft_vec3Add(t_vec v1, t_vec v2);
 
 #endif

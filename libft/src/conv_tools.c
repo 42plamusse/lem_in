@@ -6,7 +6,7 @@
 /*   By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 19:01:49 by plamusse          #+#    #+#             */
-/*   Updated: 2017/08/29 20:01:05 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/06/13 11:59:28 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		conv_si(va_list valist, t_size *sz, char c, t_fwp *fwp)
 	if ((fwp->fc & fl_z))
 		stock_si((ssize_t)va_arg(valist, ssize_t), sz, fwp);
 	else if ((fwp->fc & fl_j))
-		stock_si((__intmax_t)va_arg(valist, __intmax_t), sz, fwp);
+		stock_si((intmax_t)va_arg(valist, intmax_t), sz, fwp);
 	else if ((fwp->fc & fl_ll))
 		stock_si((long long)va_arg(valist, long long), sz, fwp);
 	else if (((fwp->fc & fl_l)) || c == 'D')
@@ -36,7 +36,7 @@ int		conv_oux(va_list valist, t_size *sz, char c, t_fwp *fwp)
 	if ((fwp->fc & fl_z))
 		stock_oux((size_t)va_arg(valist, size_t), c, sz, fwp);
 	else if ((fwp->fc & fl_j))
-		stock_oux((__uintmax_t)va_arg(valist, __uintmax_t), c, sz, fwp);
+		stock_oux((uintmax_t)va_arg(valist, uintmax_t), c, sz, fwp);
 	else if ((fwp->fc & fl_ll))
 		stock_oux((unsigned long long)va_arg(valist, unsigned long long)
 				, c, sz, fwp);
