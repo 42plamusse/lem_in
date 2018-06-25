@@ -26,6 +26,7 @@
 typedef struct	s_vert
 {
 	char	*name;
+	int		nbr_edge;
 	int		start;
 	int		end;
 	t_list	*edges;
@@ -47,6 +48,11 @@ typedef struct	s_hex
 
 int			handle_vertices(t_hex *env, char *line);
 
+/*
+******	HANDLE_VERTICES.C	*******
+*/
+
+int			handle_edges(t_hex *env, char *line);
 /*
 ******		FREE_HEX.C		*******
 */

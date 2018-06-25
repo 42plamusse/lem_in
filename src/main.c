@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 17:46:24 by plamusse          #+#    #+#             */
-/*   Updated: 2018/06/25 17:08:42 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/06/25 19:00:06 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,10 @@ int		parse_hex(t_hex *env)
 			ret = handle_ants(env, line);
 		else if (env->step == 1 && ft_countchar(line, ' ') == 2)
 			ret = handle_vertices(env, line);
+		else if (ft_countchar(line, ' ') == 0)
+			ret = handle_edges(env, line);
 		else
-		{
-			ft_printf("%s\n", line);
-			env->step = 2;
-			ret = SUCCESS;//handle_edges(env, line);
-		}
+			ret = ERROR;
 		//ft_printf("ret= %d\n", ret);
 		free(line);
 	}
