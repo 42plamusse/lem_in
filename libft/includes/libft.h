@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 08:35:25 by plamusse          #+#    #+#             */
-/*   Updated: 2018/06/14 15:42:59 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/06/25 16:45:56 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ typedef struct		s_vec
 	double			z;
 }					t_vec;
 
+int					ft_countchar(char *str, char c);
+
 size_t				ft_strlen(const char *s);
 
-int					ft_tablen(const char **tab);
+int					ft_tablen(char **tab);
 
 char				*ft_strdup(const char *s1);
 
@@ -144,6 +146,8 @@ double				ft_fabs(double n);
 ssize_t				ft_intlen(ssize_t n);
 
 char				*ft_strrev(const char *s);
+
+int					parse_int(char *elem);
 
 void				ft_perror(char *str);
 

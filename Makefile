@@ -6,7 +6,7 @@
 #    By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/17 14:39:22 by plamusse          #+#    #+#              #
-#    Updated: 2018/04/27 20:53:15 by plamusse         ###   ########.fr        #
+#    Updated: 2018/06/25 17:10:51 by plamusse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ LIB_DIR		= ./libft
 
 # src / obj files
 
-SRC			=	main.c 
+SRC			=	main.c \
+				handle_vertices.c \
+				free_hex.c
 				
 
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

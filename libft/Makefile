@@ -6,7 +6,7 @@
 #    By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/17 14:39:22 by plamusse          #+#    #+#              #
-#    Updated: 2018/06/13 15:42:31 by plamusse         ###   ########.fr        #
+#    Updated: 2018/06/25 16:46:17 by plamusse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = ft_abs.c \
 		ft_atoi.c \
 		ft_atof.c \
 		ft_bzero.c \
+		ft_countchar.c \
 		ft_fabs.c \
 		ft_intlen.c \
 		ft_isalnum.c \
@@ -54,6 +55,7 @@ SRC = ft_abs.c \
 		ft_memdel.c \
 		ft_memmove.c \
 		ft_memset.c \
+		parse_int.c \
 		ft_perror.c \
 		ft_putchar.c \
 		ft_putchar_fd.c \

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_countchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 19:27:54 by plamusse          #+#    #+#             */
-/*   Updated: 2018/06/25 16:21:43 by plamusse         ###   ########.fr       */
+/*   Created: 2018/06/25 16:43:04 by plamusse          #+#    #+#             */
+/*   Updated: 2018/06/25 16:45:09 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_tablen(char **tab)
+int		ft_countchar(char *str, char c)
 {
-	int		i;
+	int	i;
+	int	ret;
 
-	if (!tab)
-		return (0);
 	i = 0;
-	while (tab[i])
+	ret = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			ret++;
 		i++;
-	return (i);
+	}
+	return (ret);
 }

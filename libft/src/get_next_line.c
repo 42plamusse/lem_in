@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 15:39:13 by plamusse          #+#    #+#             */
-/*   Updated: 2017/05/13 16:46:45 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/06/25 17:15:45 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,11 @@ int					get_next_line(int const fd, char **line)
 		ret = ft_addbuff(fd, lst_tmp, ret);
 		str = lst_tmp->content;
 		if (ret == 0 && str[0] == '\0')
+		{
+			free(stock);
+			free(stock->content);
 			return (0);
+		}
 	}
 	return (-1);
 }

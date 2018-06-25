@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   free_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 19:27:54 by plamusse          #+#    #+#             */
-/*   Updated: 2018/06/25 16:21:43 by plamusse         ###   ########.fr       */
+/*   Created: 2018/06/25 16:59:28 by plamusse          #+#    #+#             */
+/*   Updated: 2018/06/25 17:16:01 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem-in.h"
 
-int			ft_tablen(char **tab)
+void	free_hex(t_hex *env)
 {
+	t_list	*tmp;
 	int		i;
 
-	if (!tab)
-		return (0);
+	tmp = env->verts;
 	i = 0;
-	while (tab[i])
+	while (i < env->nbr_vert)
+	{
+		free(((t_vert*)tmp->content)->name);
+		tmp = tmp->next;
 		i++;
-	return (i);
+	}
+	ft_lst2c_del(&(env->verts), &ft_lst_memclr);
 }
