@@ -6,7 +6,7 @@
 #    By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/17 14:39:22 by plamusse          #+#    #+#              #
-#    Updated: 2018/06/25 18:38:42 by plamusse         ###   ########.fr        #
+#    Updated: 2018/07/16 18:24:57 by plamusse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIB_DIR		= ./libft
 # src / obj files
 
 SRC			=	main.c \
+				debug.c \
 				handle_vertices.c \
 				free_hex.c \
 				handle_edges.c

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_env.c                                         :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/25 16:59:28 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/16 18:43:11 by plamusse         ###   ########.fr       */
+/*   Created: 2018/07/16 18:00:18 by plamusse          #+#    #+#             */
+/*   Updated: 2018/07/16 18:01:22 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void	free_hex(t_hex *env)
+void	print_hex(t_hex *env)
 {
 	t_list *verts;
 	t_list *edges;
@@ -23,11 +23,16 @@ void	free_hex(t_hex *env)
 	i = 0;
 	while (i < env->nbr_vert)
 	{
-		free(((t_vert*)(verts->content))->name);
+		ft_printf("vert= %s\n", ((t_vert*)(verts->content))->name);
 		edges = ((t_vert *)(verts->content))->edges;
-		ft_lst2c_del(&(edges), &ft_lst_memclr);
+		j = 0;
+		while (j < ((t_vert *)(verts->content))->nbr_edges)
+		{
+			ft_printf("edges= %s\n", ((t_vert*)(edges->content))->name);
+			j++;
+			edges = edges->next;
+		}
 		i++;
 		verts = verts->next;
 	}
-	ft_lst2c_del(&(verts), &ft_lst_memclr);
 }

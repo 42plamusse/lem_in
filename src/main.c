@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 17:46:24 by plamusse          #+#    #+#             */
-/*   Updated: 2018/06/25 19:00:06 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/16 18:43:00 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		handle_command(t_hex *env, char *line)
 		else
 			return (ERROR);
 	}
+	ft_printf("%s\n", line);
 	return (SUCCESS);
 }
 
@@ -48,7 +49,6 @@ int		parse_hex(t_hex *env)
 	char	*line = NULL;
 	int		ret;
 
-	ft_printf("ok\n");
 	ret = SUCCESS;
 	while (ret > ERROR && get_next_line(STDIN_FILENO, &line) > END_OF_FILE)
 	{
@@ -56,7 +56,6 @@ int		parse_hex(t_hex *env)
 		{
 			if (*(line + 1) == '#')
 			{
-				ft_printf("%s\n", line);
 				if (env->step == 1)
 					ret = handle_command(env, line);
 				else
@@ -69,7 +68,7 @@ int		parse_hex(t_hex *env)
 			ret = ERROR;
 		else if (env->step == 0)
 			ret = handle_ants(env, line);
-		else if (env->step == 1 && ft_countchar(line, ' ') == 2)
+		else if (env->step == 1 && ft_countchar(line, ' ') >= 2)
 			ret = handle_vertices(env, line);
 		else if (ft_countchar(line, ' ') == 0)
 			ret = handle_edges(env, line);
@@ -96,7 +95,8 @@ int		main(void)
 	t_hex	env;
 
 	init_hex(&env);
-	parse_hex(&env);
+	if (parse_hex(&env) == SUCCESS)
+		print_hex(&env);
 	free_hex(&env);
 	return (0);
 }

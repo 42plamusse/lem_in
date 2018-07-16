@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_verticals.c                                 :+:      :+:    :+:   */
+/*   handle_vertices.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:01:16 by plamusse          #+#    #+#             */
-/*   Updated: 2018/06/25 19:00:06 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/16 17:11:48 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		init_vert(t_hex *env, t_vert *vert, char **tab)
 	}
 	else
 		vert->start = 0;
-	if (env->end == 1)
+	if (env->end == 1 && env->start != 1)
 	{
 		vert->end = 1;
 		env->end = -1;
@@ -30,16 +30,24 @@ void		init_vert(t_hex *env, t_vert *vert, char **tab)
 	else
 		vert->end = 0;
 	vert->edges = NULL;
-	vert->nbr_edge = 0;
+	vert->nbr_edges = 0;
 }
+
 int			parse_vertices(char **tab)
 {
+	int			ret;
+
+	ret = SUCCESS;
 	if (ft_tablen(tab) == 3)
 	{
-		if (parse_int(tab[1]) == SUCCESS && parse_int(tab[2]) == SUCCESS)
-			return (SUCCESS);
+		if (parse_int(tab[1]) == ERROR || parse_int(tab[2]) == ERROR)
+			ret = ERROR;
+		if (ft_strchr(tab[0], '-'))
+			ret = ERROR;
 	}
-	return (ERROR);
+	else
+		ret = ERROR;
+	return (ret);
 }
 
 int			handle_vertices(t_hex *env, char *line)
@@ -63,7 +71,6 @@ int			handle_vertices(t_hex *env, char *line)
 		}
 		else
 			env->nbr_vert++;
-
 	}
 	ft_tabclr(tab);
 	return (ret);
