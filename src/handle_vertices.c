@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:01:16 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/16 17:11:48 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/18 18:52:39 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void		init_vert(t_hex *env, t_vert *vert, char **tab)
 		vert->end = 0;
 	vert->edges = NULL;
 	vert->nbr_edges = 0;
+	vert->deadend = 0;
 }
 
 int			parse_vertices(char **tab)

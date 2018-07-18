@@ -26,6 +26,9 @@
 typedef struct	s_vert
 {
 	char	*name;
+	int		id;
+	int		on;
+	int		deadend;
 	int		nbr_edges;
 	int		start;
 	int		end;
@@ -40,6 +43,8 @@ typedef struct	s_hex
 	int		step;
 	int		start;
 	int		end;
+	int		*cur_way;
+	t_list	*ways;
 }				t_hex;
 
 /*
