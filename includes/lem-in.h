@@ -44,8 +44,16 @@ typedef struct	s_hex
 	int		start;
 	int		end;
 	int		*cur_way;
+	int		index_way;
+	int		nbr_ways;
 	t_list	*ways;
 }				t_hex;
+
+typedef	struct	s_way
+{
+	int	len;
+	int	*way;
+}				t_way;
 
 /*
 ******	HANDLE_VERTICES.C	*******
@@ -69,5 +77,12 @@ void		free_hex(t_hex *env);
 */
 
 void		print_hex(t_hex *env);
+void		print_ways(t_hex *env);
+
+/*
+*****		ALGO.C			*******
+*/
+
+int		resolve_hex(t_hex *env);
 
 #endif

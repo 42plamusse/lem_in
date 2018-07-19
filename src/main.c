@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 17:46:24 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/17 18:11:12 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/19 17:22:56 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void	init_hex(t_hex *env)
 	env->end = INIT_ZERO; 
 	env->verts = NULL;
 	env->nbr_vert = 0;
+	env->ways = NULL;
+	env->cur_way = NULL;
+	env->index_way = 0;
+	env->nbr_ways = 0;
 }
 
 int		main(void)
@@ -96,7 +100,13 @@ int		main(void)
 
 	init_hex(&env);
 	if (parse_hex(&env) == SUCCESS)
+	{
 		print_hex(&env);
+		resolve_hex(&env);
+	}
+	else
+		ft_printf("ERROR\n");
+	print_ways(&env);
 	free_hex(&env);
 	return (0);
 }

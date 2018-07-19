@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:59:28 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/16 18:43:11 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/19 13:46:34 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	free_hex(t_hex *env)
 	t_list *verts;
 	t_list *edges;
 	int		i;
-	int		j;
 
+	if (env->cur_way)
+		free(env->cur_way);
 	verts = env->verts;
 	i = 0;
 	while (i < env->nbr_vert)
