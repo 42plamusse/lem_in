@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:01:16 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/19 17:00:07 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/20 16:12:30 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int			parse_vertices(char **tab)
 
 int			handle_vertices(t_hex *env, char *line)
 {
+	t_list		*debug; //
 	t_vert		vert;
 	int			ret;
 	char		**tab;
@@ -66,14 +67,17 @@ int			handle_vertices(t_hex *env, char *line)
 	{
 		ft_printf("%s\n", line);
 		init_vert(env, &vert, tab);
-		if (ft_lst2c_push_back(&(env->verts), ft_lstnew(&vert, sizeof(vert)))
+		if (ft_lst2c_push_back(&(env->verts), (debug = ft_lstnew(&vert, sizeof(vert))))
 				== NULL)
 		{
 			free(vert.name);
 			ret = MALLOC_ERROR;
 		}
 		else
+		{
 			env->nbr_vert++;
+			ft_printf("vert adress= %p\n", debug->content);
+		}
 	}
 	ft_tabclr(tab);
 	return (ret);

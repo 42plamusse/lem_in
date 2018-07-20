@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 18:00:18 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/19 17:14:52 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/20 16:15:58 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	print_hex(t_hex *env)
 	while (i < env->nbr_vert)
 	{
 		ft_printf("vert= %s\n", ((t_vert*)(verts->content))->name);
-		ft_printf("%p\n", verts);
+		ft_printf("%p\n", verts->content);
 		edges = ((t_vert *)(verts->content))->edges;
 		j = 0;
 		while (j < ((t_vert *)(verts->content))->nbr_edges)
 		{
 			ft_printf("edges= %s\n", ((t_vert*)(edges->content))->name);
-			ft_printf("%p\n", edges);
+			ft_printf("%p\n", edges->content);
 			j++;
 			edges = edges->next;
 		}

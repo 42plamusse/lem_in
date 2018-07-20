@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:06:35 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/19 18:00:27 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/20 16:53:26 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		path_finding(t_hex *env, t_vert *cur_vert)
 	int		ret;
 	int		i;
 
+	ret = SUCCESS;
 	cur_vert->on = 1;
 	tmp = cur_vert->edges;
 	if (tmp)
@@ -62,20 +63,29 @@ int		path_finding(t_hex *env, t_vert *cur_vert)
 	else
 		edge = NULL;
 	//ret = ERROR;
-	ft_printf("%p\n", cur_vert->edges);
 	ft_printf("cur id= %i\n", cur_vert->id);
+	ft_printf("cur adress= %p\n", cur_vert);
 	env->cur_way[env->index_way++] = cur_vert->id;
 	i = 0;
-	while (edge && i++ < cur_vert->nbr_edges && !edge->end)
+	while (tmp && edge && ft_printf("i= %i\n", i) && i++ < cur_vert->nbr_edges && !edge->end)
 	{
 		ft_printf("edge id= %i\n", edge->id);
+		ft_printf("edge adress= %p\n", edge);
 		ft_printf("on= %i\n", edge->on);
 		if (edge->on == 0 && edge->deadend != -1)
 			ret = path_finding(env, get_vertices(env, edge));
 		tmp = tmp->next;
-		edge = ((t_vert*)(tmp->content));
+		if (tmp)
+			edge = ((t_vert*)(tmp->content));
+		else
+		{
+			ft_printf("no tmp\n");
+			edge = NULL;
+		}
+		ft_printf("end of lvl\n");
+		// tmp ou edge font segfault
 	}
-	ft_printf("end= \n", edge->end);
+	ft_printf("end= %i\n", edge->end);
 	if (edge && edge->end)
 	{
 		if (cur_way_cpy(env) == MALLOC_ERROR)
@@ -121,5 +131,6 @@ int		resolve_hex(t_hex *env)
 	if (set_int_tab_to_zero(env) == MALLOC_ERROR)
 		return (MALLOC_ERROR);
 	path_finding(env, get_start_vert(env));
+	ft_printf("sortie pathfinding\n");
 	return (SUCCESS);
 }

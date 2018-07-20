@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 18:13:50 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/19 17:59:09 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/07/20 16:00:00 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,16 @@ t_vert	*get_vert_from_name(t_hex *env, char *str)
 
 int		create_edge(t_vert *vert1, t_vert *vert2)
 {
-	if (ft_lst2c_push_back(&(vert1->edges), ft_lstnew(&vert2, sizeof(t_vert*)))
+	if (ft_lst_push_front(&(vert1->edges), ft_lstnew(&vert2, sizeof(t_vert*)))
 			== NULL)
 		return (MALLOC_ERROR);
-	if (ft_lst2c_push_back(&(vert2->edges), ft_lstnew(&vert1, sizeof(t_vert*)))
+	if (ft_lst_push_front(&(vert2->edges), ft_lstnew(&vert1, sizeof(t_vert*)))
 			== NULL)
 		return (MALLOC_ERROR);
+	ft_printf("vert1 adress= %p\n", vert1);
+	ft_printf("vert2 adress= %p\n", vert2);
+	vert1->edges->content = vert2;
+	vert2->edges->content = vert1;
 	vert1->nbr_edges++;
 	vert2->nbr_edges++;
 	return (SUCCESS);
