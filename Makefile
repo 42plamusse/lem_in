@@ -26,6 +26,7 @@ SRC			=	main.c \
 				handle_vertices.c \
 				free_hex.c \
 				handle_edges.c \
+				print_ants.c \
 				algo.c
 				
 
@@ -34,7 +35,7 @@ OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 # compiler and flags
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -g -Wall -Werror -Wextra
 
 # libraries
 L_FT		= $(LIB_DIR)

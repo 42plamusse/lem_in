@@ -21,21 +21,23 @@ void	print_hex(t_hex *env)
 
 	verts = env->verts;
 	i = 0;
+	write(1, "\n",1);
 	while (i < env->nbr_vert)
 	{
 		ft_printf("vert= %s\n", ((t_vert*)(verts->content))->name);
-		ft_printf("%p\n", verts->content);
+		//ft_printf("%p\n", verts->content);
 		edges = ((t_vert *)(verts->content))->edges;
 		j = 0;
 		while (j < ((t_vert *)(verts->content))->nbr_edges)
 		{
-			ft_printf("edges= %s\n", ((t_vert*)(edges->content))->name);
-			ft_printf("%p\n", edges->content);
+			ft_printf("%s-%s\n", ((t_vert*)(verts->content))->name, ((t_vert*)(edges->content))->name);
+		//	ft_printf("%p\n", edges->content);
 			j++;
 			edges = edges->next;
 		}
 		i++;
 		verts = verts->next;
+	write(1, "\n",1);
 	}
 }
 
@@ -55,11 +57,12 @@ void	print_ways(t_hex *env)
 		j = 0;
 		while (j < ((t_way*)(tmp->content))->len)
 		{
-			ft_printf("%d\n", tab[j]);
+			ft_printf("%d", tab[j]);
 			j++;
 			if (j < ((t_way*)(tmp->content))->len)
 				ft_printf("-");
 		}
+		write(1, "\n", 1);
 		i++;
 		tmp = tmp->next;
 	}

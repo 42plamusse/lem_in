@@ -32,22 +32,6 @@ int		cur_way_cpy(t_hex *env)
 	return (SUCCESS);
 }
 
-t_vert	*get_vertices(t_hex *env, t_vert *edge)
-{
-	int		i;
-	t_list	*tmp;
-
-	i = 0;
-	tmp = env->verts;
-	while (i < env->nbr_vert)
-	{
-		if (((t_vert*)(tmp->content))->id == edge->id)
-			return (((t_vert*)(tmp->content)));
-		i++;
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
 int		path_finding(t_hex *env, t_vert *cur_vert)
 {
 	t_vert	*edge;
@@ -62,36 +46,31 @@ int		path_finding(t_hex *env, t_vert *cur_vert)
 		edge = ((t_vert*)(tmp->content));
 	else
 		edge = NULL;
-	//ret = ERROR;
-	ft_printf("cur id= %i\n", cur_vert->id);
-	ft_printf("cur adress= %p\n", cur_vert);
+	//ft_printf("cur id= %i\n", cur_vert->id);
+	//ft_printf("cur adress= %p\n", cur_vert);
 	env->cur_way[env->index_way++] = cur_vert->id;
 	i = 0;
-	while (tmp && edge && ft_printf("i= %i\n", i) && i++ < cur_vert->nbr_edges && !edge->end)
+	while (i++ < cur_vert->nbr_edges && !edge->end)
 	{
-		ft_printf("edge id= %i\n", edge->id);
-		ft_printf("edge adress= %p\n", edge);
-		ft_printf("on= %i\n", edge->on);
+	//	ft_printf("edge id= %i\n", edge->id);
+	//	ft_printf("edge adress= %p\n", edge);
+	//	ft_printf("on= %i\n", edge->on);
 		if (edge->on == 0 && edge->deadend != -1)
-			ret = path_finding(env, get_vertices(env, edge));
+			ret = path_finding(env, edge);
 		tmp = tmp->next;
 		if (tmp)
 			edge = ((t_vert*)(tmp->content));
 		else
-		{
-			ft_printf("no tmp\n");
 			edge = NULL;
-		}
-		ft_printf("end of lvl\n");
+	//	ft_printf("tour de boucle\n");
 		// tmp ou edge font segfault
 	}
-	ft_printf("end= %i\n", edge->end);
 	if (edge && edge->end)
 	{
 		if (cur_way_cpy(env) == MALLOC_ERROR)
 			return (MALLOC_ERROR);
 	}
-	//cur_vert->deadend = ret;
+	cur_vert->deadend = ret;
 	cur_vert->on = 0;
 	env->cur_way[env->index_way--] = 0;
 	return (ret);
@@ -126,11 +105,59 @@ int		set_int_tab_to_zero(t_hex *env)
 	return (SUCCESS);
 }
 
+void	swap_elem(t_list *a)
+{
+	t_list	*first;
+	t_list	*second;
+
+	first = a;
+	second = first->next;
+	first->prev->next = second;
+	second->prev = first->prev;
+	second->next->prev = first;
+	first->next = second->next;
+	first->prev = second;
+	second->next = first;
+}
+
+void	sort_list_ways(t_hex *env)
+{
+	t_list	*tmp;
+	int	i;
+	int	j;
+	int	cur;
+	int	next;
+
+	tmp = env->ways;
+	i = env->nbr_ways;
+	while (i > 1)
+	{
+		j = 0;
+		while (j < env->nbr_ways)
+		{
+			cur = ((t_way*)(tmp->content))->len;
+			next = ((t_way*)(tmp->next->content))->len;
+			if (cur > next && j < i - 1)
+			{
+				swap_elem(tmp);
+			}
+			else
+				tmp = tmp->next;
+			j++;
+		}
+		env->ways = tmp;
+		i--;
+	}	
+}
+
 int		resolve_hex(t_hex *env)
 {
 	if (set_int_tab_to_zero(env) == MALLOC_ERROR)
 		return (MALLOC_ERROR);
 	path_finding(env, get_start_vert(env));
+	sort_list_ways(env);
+	print_ways(env);
+	print_ants(env);
 	ft_printf("sortie pathfinding\n");
 	return (SUCCESS);
 }

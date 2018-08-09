@@ -92,6 +92,7 @@ void	init_hex(t_hex *env)
 	env->cur_way = NULL;
 	env->index_way = 0;
 	env->nbr_ways = 0;
+	env->max_multipath = 0;
 }
 
 int		main(void)
@@ -106,7 +107,6 @@ int		main(void)
 	}
 	else
 		ft_printf("ERROR\n");
-	print_ways(&env);
-	free_hex(&env);
+//	free_hex(&env);
 	return (0);
 }

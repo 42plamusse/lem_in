@@ -1,0 +1,18 @@
+5
+##start
+start 0 0
+##end
+end 0 0
+salle1 0 0
+salle2 0 0
+salle3 0 0
+salle4 0 0
+dead1 0 0
+dead2 0 0
+start-salle1
+start-salle2
+salle1-salle3
+salle1-salle4
+salle2-salle4
+salle3-end
+salle4-end

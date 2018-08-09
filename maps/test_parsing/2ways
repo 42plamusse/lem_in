@@ -1,0 +1,11 @@
+5
+##start
+start 0 0
+##end
+end 0 0
+salle1 0 0
+salle2 0 0
+start-salle1
+start-salle2
+salle1-end
+salle2-end

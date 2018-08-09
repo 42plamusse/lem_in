@@ -33,27 +33,31 @@ typedef struct	s_vert
 	int		start;
 	int		end;
 	t_list	*edges;
+	int		ant;
 }				t_vert;
-
-typedef struct	s_hex
-{
-	t_list	*verts;
-	int		ants;
-	int		nbr_vert;
-	int		step;
-	int		start;
-	int		end;
-	int		*cur_way;
-	int		index_way;
-	int		nbr_ways;
-	t_list	*ways;
-}				t_hex;
 
 typedef	struct	s_way
 {
 	int	len;
 	int	*way;
 }				t_way;
+
+typedef struct	s_hex
+{
+	t_list		*verts;
+	int		ants;
+	int		nbr_vert;
+	int		step;
+	int		start;
+	int		end;
+	t_list		*ways;
+	int		*cur_way;
+	int		index_way;
+	int		nbr_ways;
+	int		max_multipath;
+	t_way		*temp_ways;
+	t_way		*finale;
+}				t_hex;
 
 /*
 ******	HANDLE_VERTICES.C	*******
@@ -84,5 +88,7 @@ void		print_ways(t_hex *env);
 */
 
 int		resolve_hex(t_hex *env);
+int		get_best_ways(t_hex *env);
+void		print_ants(t_hex *env);
 
 #endif

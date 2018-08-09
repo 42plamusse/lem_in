@@ -63,8 +63,8 @@ int		create_edge(t_vert *vert1, t_vert *vert2)
 	if (ft_lst_push_front(&(vert2->edges), ft_lstnew(&vert1, sizeof(t_vert*)))
 			== NULL)
 		return (MALLOC_ERROR);
-	ft_printf("vert1 adress= %p\n", vert1);
-	ft_printf("vert2 adress= %p\n", vert2);
+	//ft_printf("vert1 adress= %p\n", vert1);
+	//ft_printf("vert2 adress= %p\n", vert2);
 	vert1->edges->content = vert2;
 	vert2->edges->content = vert1;
 	vert1->nbr_edges++;

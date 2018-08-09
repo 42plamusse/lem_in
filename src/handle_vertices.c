@@ -32,7 +32,7 @@ void		init_vert(t_hex *env, t_vert *vert, char **tab)
 	vert->id = env->nbr_vert;
 	vert->edges = NULL;
 	vert->nbr_edges = 0;
-	vert->deadend = 0;
+	vert->ant = 0;
 	vert->on = 0;
 }
 
@@ -76,7 +76,7 @@ int			handle_vertices(t_hex *env, char *line)
 		else
 		{
 			env->nbr_vert++;
-			ft_printf("vert adress= %p\n", debug->content);
+			//ft_printf("vert adress= %p\n", debug->content);
 		}
 	}
 	ft_tabclr(tab);
