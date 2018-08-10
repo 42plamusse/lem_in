@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:06:35 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/10 15:17:07 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/10 16:41:57 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,21 @@ void	sort_list_ways(t_hex *env)
 
 int		resolve_hex(t_hex *env)
 {
+	t_vert	*start;
+
 	if (set_int_tab_to_zero(env) == MALLOC_ERROR)
 		return (MALLOC_ERROR);
-	path_finding(env, get_vert_from_id(env, 0));
-	sort_list_ways(env);
-	//print_ways(env);
-	print_ants(env);
+	start = get_vert_from_id(env, 0);
+	if (start)
+	{
+		path_finding(env, start); 
+		if (env->ways)
+		{
+			sort_list_ways(env);
+			//print_ways(env);
+			ft_printf("\n");
+			print_ants(env);
+		}
+	}
 	return (SUCCESS);
 }

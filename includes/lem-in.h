@@ -56,12 +56,10 @@ typedef struct	s_hex
 	int		start;
 	int		end;
 	int		global_id;
-	t_list		*ways;
+	t_list	*ways;
 	int		*cur_way;
 	int		index_way;
 	int		nbr_ways;
-	t_way		*temp_ways;
-	t_way		*finale;
 }				t_hex;
 
 /*

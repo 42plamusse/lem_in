@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 17:46:24 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/10 14:12:00 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/10 16:54:54 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ int		handle_ants(t_hex *env, char *line)
 	if (parse_int(line) == SUCCESS)
 	{
 		env->ants = ft_atoi(line);
-		ft_printf("%i\n", env->ants);
-		env->step = 1;
-		return (SUCCESS);
+		if (env->ants > 0)
+		{
+			ft_printf("%i\n", env->ants);
+			env->step = 1;
+			return (SUCCESS);
+		}
 	}
 	return (ERROR);
 }
@@ -100,13 +103,10 @@ int		main(void)
 	t_hex	env;
 
 	init_hex(&env);
-	if (parse_hex(&env) == SUCCESS)
-	{
-		print_hex(&env);
+	if (parse_hex(&env) == SUCCESS)// && check_hex(&env))
 		resolve_hex(&env);
-	}
 	else
 		ft_printf("ERROR\n");
-//	free_hex(&env);
+	free_hex(&env);
 	return (0);
 }
