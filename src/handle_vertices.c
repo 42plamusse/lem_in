@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:01:16 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/20 16:12:30 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/10 14:17:54 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		init_vert(t_hex *env, t_vert *vert, char **tab)
 	{
 		vert->start = 1;
 		env->start = -1;
+		vert->id = 0;
 	}
 	else
 		vert->start = 0;
@@ -26,10 +27,12 @@ void		init_vert(t_hex *env, t_vert *vert, char **tab)
 	{
 		vert->end = 1;
 		env->end = -1;
+		vert->id = 1;
 	}
 	else
 		vert->end = 0;
-	vert->id = env->nbr_vert;
+	if (vert->start == 0 && vert->end == 0)
+		vert->id = env->global_id++;
 	vert->edges = NULL;
 	vert->nbr_edges = 0;
 	vert->ant = 0;

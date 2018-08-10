@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:06:35 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/20 16:53:26 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/10 15:17:07 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,18 @@ int		path_finding(t_hex *env, t_vert *cur_vert)
 			edge = ((t_vert*)(tmp->content));
 		else
 			edge = NULL;
-	//	ft_printf("tour de boucle\n");
-		// tmp ou edge font segfault
 	}
 	if (edge && edge->end)
 	{
+		env->cur_way[env->index_way++] = 1;
 		if (cur_way_cpy(env) == MALLOC_ERROR)
 			return (MALLOC_ERROR);
+		env->cur_way[env->index_way--] = 0;
 	}
 	cur_vert->deadend = ret;
 	cur_vert->on = 0;
 	env->cur_way[env->index_way--] = 0;
 	return (ret);
-}
-
-t_vert	*get_start_vert(t_hex *env)
-{
-	int		i;
-	t_list	*tmp;
-
-	i = 0;
-	tmp = env->verts;
-	while (i < env->nbr_vert)
-	{
-		if (((t_vert*)(tmp->content))->start == 1)
-			return (((t_vert*)(tmp->content)));
-		i++;
-		tmp = tmp->next;
-	}
-	return (NULL);
 }
 
 int		set_int_tab_to_zero(t_hex *env)
@@ -154,10 +137,9 @@ int		resolve_hex(t_hex *env)
 {
 	if (set_int_tab_to_zero(env) == MALLOC_ERROR)
 		return (MALLOC_ERROR);
-	path_finding(env, get_start_vert(env));
+	path_finding(env, get_vert_from_id(env, 0));
 	sort_list_ways(env);
-	print_ways(env);
+	//print_ways(env);
 	print_ants(env);
-	ft_printf("sortie pathfinding\n");
 	return (SUCCESS);
 }

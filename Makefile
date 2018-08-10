@@ -6,7 +6,7 @@
 #    By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/17 14:39:22 by plamusse          #+#    #+#              #
-#    Updated: 2018/07/19 15:20:35 by plamusse         ###   ########.fr        #
+#    Updated: 2018/08/10 14:40:11 by plamusse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC			=	main.c \
 				free_hex.c \
 				handle_edges.c \
 				print_ants.c \
-				algo.c
+				algo.c \
+				vert_helpers.c
 				
 
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

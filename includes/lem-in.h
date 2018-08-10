@@ -1,6 +1,11 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
+# if ismac
+	#define UINT 0
+# else
+	#define UINT 1
+# endif
 /*
 ****** INCLUDE ******
 */
@@ -50,11 +55,11 @@ typedef struct	s_hex
 	int		step;
 	int		start;
 	int		end;
+	int		global_id;
 	t_list		*ways;
 	int		*cur_way;
 	int		index_way;
 	int		nbr_ways;
-	int		max_multipath;
 	t_way		*temp_ways;
 	t_way		*finale;
 }				t_hex;
@@ -64,6 +69,7 @@ typedef struct	s_hex
 */
 
 int			handle_vertices(t_hex *env, char *line);
+t_vert		*get_vert_from_id(t_hex *env, int id);
 
 /*
 ******	HANDLE_VERTICES.C	*******

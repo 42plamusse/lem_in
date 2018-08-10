@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 17:46:24 by plamusse          #+#    #+#             */
-/*   Updated: 2018/07/19 17:22:56 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/10 14:12:00 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	init_hex(t_hex *env)
 	env->cur_way = NULL;
 	env->index_way = 0;
 	env->nbr_ways = 0;
-	env->max_multipath = 0;
+	env->global_id = 2;
 }
 
 int		main(void)
