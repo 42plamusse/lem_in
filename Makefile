@@ -6,7 +6,7 @@
 #    By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/17 14:39:22 by plamusse          #+#    #+#              #
-#    Updated: 2018/08/10 14:40:11 by plamusse         ###   ########.fr        #
+#    Updated: 2018/08/12 16:58:45 by plamusse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIB_DIR		= ./libft
 # src / obj files
 
 SRC			=	main.c \
+				parse_hex.c \
 				debug.c \
 				handle_vertices.c \
 				free_hex.c \
@@ -43,7 +44,7 @@ L_FT		= $(LIB_DIR)
 LIB_LNK		= -L $(L_FT) -lft
 LIB_INC		= $(L_FT)/includes
 
-all: $(NAME) Makefile libft/libft.a
+all: $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $@

@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:06:35 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/10 16:41:57 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/12 16:25:00 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,11 @@ int		path_finding(t_hex *env, t_vert *cur_vert)
 		edge = ((t_vert*)(tmp->content));
 	else
 		edge = NULL;
-	//ft_printf("cur id= %i\n", cur_vert->id);
-	//ft_printf("cur adress= %p\n", cur_vert);
 	env->cur_way[env->index_way++] = cur_vert->id;
 	i = 0;
 	while (i++ < cur_vert->nbr_edges && !edge->end)
 	{
-	//	ft_printf("edge id= %i\n", edge->id);
-	//	ft_printf("edge adress= %p\n", edge);
-	//	ft_printf("on= %i\n", edge->on);
-		if (edge->on == 0 && edge->deadend != -1)
+		if (edge->on == 0)
 			ret = path_finding(env, edge);
 		tmp = tmp->next;
 		if (tmp)
@@ -70,7 +65,6 @@ int		path_finding(t_hex *env, t_vert *cur_vert)
 			return (MALLOC_ERROR);
 		env->cur_way[env->index_way--] = 0;
 	}
-	cur_vert->deadend = ret;
 	cur_vert->on = 0;
 	env->cur_way[env->index_way--] = 0;
 	return (ret);
@@ -146,7 +140,6 @@ int		resolve_hex(t_hex *env)
 		if (env->ways)
 		{
 			sort_list_ways(env);
-			//print_ways(env);
 			ft_printf("\n");
 			print_ants(env);
 		}

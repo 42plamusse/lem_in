@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:59:28 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/10 16:54:53 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/12 15:46:58 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,24 @@
 static void	free_verts(t_hex *env)
 {
 	t_list *verts;
+	t_list *edges;
+	t_list	*tmp;
 	int		i;
 
 	verts = env->verts;
 	i = 0;
 	while (i < env->nbr_vert)
 	{
-		free(((t_vert*)(verts->content))->name);
-		i++;
+		edges = ((t_vert*)(verts->content))->edges;
+		while (edges)
+		{
+			tmp = edges;
+			edges = edges->next;
+			free(tmp);
+		}
+		ft_strdel(&((t_vert*)(verts->content))->name);	
 		verts = verts->next;
+		i++;
 	}
 	ft_lst2c_del(&(verts), &ft_lst_memclr);
 }

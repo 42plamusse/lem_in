@@ -63,17 +63,22 @@ typedef struct	s_hex
 }				t_hex;
 
 /*
-******	HANDLE_VERTICES.C	*******
+******	PARSING	*******
 */
 
+int			parse_hex(t_hex *env);
 int			handle_vertices(t_hex *env, char *line);
 t_vert		*get_vert_from_id(t_hex *env, int id);
+int			handle_edges(t_hex *env, char *line);
 
 /*
-******	HANDLE_VERTICES.C	*******
+*****		ALGO.C			*******
 */
 
-int			handle_edges(t_hex *env, char *line);
+int		resolve_hex(t_hex *env);
+int		get_best_ways(t_hex *env);
+void		print_ants(t_hex *env);
+
 /*
 ******		FREE_HEX.C		*******
 */
@@ -86,13 +91,5 @@ void		free_hex(t_hex *env);
 
 void		print_hex(t_hex *env);
 void		print_ways(t_hex *env);
-
-/*
-*****		ALGO.C			*******
-*/
-
-int		resolve_hex(t_hex *env);
-int		get_best_ways(t_hex *env);
-void		print_ants(t_hex *env);
 
 #endif
