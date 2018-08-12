@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_ants.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/12 17:47:41 by plamusse          #+#    #+#             */
+/*   Updated: 2018/08/12 17:48:18 by plamusse         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem-in.h"
 
 static int	check_way_empty(t_hex *env, t_way *way, int len)
@@ -22,13 +34,12 @@ static void	shift_ants(t_hex *env, t_way *way)
 {
 	t_vert	*cur;
 	t_vert	*prev;
-	int	i;
+	int		i;
 
 	i = way->len - 1;
 	while (i)
 	{
 		cur = get_vert_from_id(env, way->way[i]);
-		//ft_printf("cur id= %i\n", cur->id);
 		prev = get_vert_from_id(env, way->way[i - 1]);
 		cur->ant = prev->ant;
 		i--;
@@ -43,11 +54,11 @@ static void	shift_ants(t_hex *env, t_way *way)
 		write(1, "\n", 1);
 }
 
-void	print_ants(t_hex *env)
+void		print_ants(t_hex *env)
 {
 	t_way	*way;
 	t_vert	*start;
-	int	ants;
+	int		ants;
 
 	way = ((t_way*)(env->ways->content));
 	ants = 1;

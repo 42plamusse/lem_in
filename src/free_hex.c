@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:59:28 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 15:46:58 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/12 17:49:38 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	free_verts(t_hex *env)
 {
-	t_list *verts;
-	t_list *edges;
+	t_list	*verts;
+	t_list	*edges;
 	t_list	*tmp;
 	int		i;
 
@@ -30,7 +30,7 @@ static void	free_verts(t_hex *env)
 			edges = edges->next;
 			free(tmp);
 		}
-		ft_strdel(&((t_vert*)(verts->content))->name);	
+		ft_strdel(&((t_vert*)(verts->content))->name);
 		verts = verts->next;
 		i++;
 	}
@@ -39,7 +39,7 @@ static void	free_verts(t_hex *env)
 
 static void	free_ways(t_hex *env)
 {
-	t_list *ways;
+	t_list	*ways;
 	int		i;
 
 	if (env->cur_way)
@@ -55,7 +55,7 @@ static void	free_ways(t_hex *env)
 	ft_lst2c_del(&(ways), &ft_lst_memclr);
 }
 
-void	free_hex(t_hex *env)
+void		free_hex(t_hex *env)
 {
 	free_verts(env);
 	free_ways(env);
