@@ -6,7 +6,7 @@
 #    By: plamusse <plamusse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/17 14:39:22 by plamusse          #+#    #+#              #
-#    Updated: 2018/08/14 18:51:22 by plamusse         ###   ########.fr        #
+#    Updated: 2018/08/14 19:00:27 by plamusse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ all: $(NAME)
 $(OBJ_DIR):
 	mkdir -p $@
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INC_DIR) libft/libft.a
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INC_DIR)
 	$(CC) $(CFLAGS)  -o $@ -c $< -I $(INC_DIR)
 
 $(NAME): $(OBJ_DIR) $(OBJ)

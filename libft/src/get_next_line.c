@@ -5,65 +5,107 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/11 08:35:25 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/14 18:51:11 by plamusse         ###   ########.fr       */
+/*   Created: 2017/05/02 15:39:13 by plamusse          #+#    #+#             */
+/*   Updated: 2018/08/14 20:07:58 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "get_next_line.h"
 
-static int	read_from_fd_into_stock(int const fd, char **stock)
+t_list				*ft_lstupdate(int const fd, t_list *stock, t_list **pfirst)
 {
-	static char	buff[BUFF_SIZE + 1] = { ENDL };
-	int			read_bytes;
-	char		*nstr;
+	t_list			*lst_tmp;
 
-	read_bytes = read(fd, buff, BUFF_SIZE);
-	if (read_bytes > 0)
+	if (!stock)
 	{
-		buff[read_bytes] = '\0';
-		nstr = ft_strjoin(*stock, buff);
-		if (!nstr)
-			return (-1);
-		free(*stock);
-		*stock = nstr;
+		if (!(stock = (t_list*)malloc(sizeof(*stock))))
+			return (NULL);
+		stock->content = ft_strnew(0);
+		stock->content_size = (size_t)fd;
+		stock->next = NULL;
+		*pfirst = stock;
+		return (stock);
 	}
-	return (read_bytes);
+	lst_tmp = stock;
+	while (lst_tmp && lst_tmp->content_size != (size_t)fd)
+		lst_tmp = lst_tmp->next;
+	if (lst_tmp && lst_tmp->content_size == (size_t)fd)
+		return (lst_tmp);
+	else if (!(lst_tmp = (t_list*)malloc(sizeof(*lst_tmp))))
+		return (NULL);
+	lst_tmp->content = ft_strnew(0);
+	lst_tmp->content_size = (size_t)fd;
+	lst_tmp->next = stock;
+	*pfirst = lst_tmp;
+	return (lst_tmp);
 }
 
-static void	stock_rest(char **stock, char *endl_index)
+ssize_t				ft_retline_stockrest(char **line, t_list **stock,
+		ssize_t ret)
 {
-	endl_index = ft_strdup(endl_index + 1);
-	free(*stock);
-	*stock = endl_index;
-}
+	t_list			*lst_tmp;
+	char			*tmp;
+	size_t			i;
 
-int			get_next_line(int const fd, char **line)
-{
-	static char	*stock = NULL;
-	char		*endl_index;
-	int			ret;
-
-	if (!stock && (stock = (char*)ft_memalloc(sizeof(char))) == NULL)
-		return (-1);
-	endl_index = ft_strchr(stock, ENDL);
-	while (endl_index == NULL)
+	lst_tmp = *stock;
+	i = 0;
+	if (ret == 0)
 	{
-		ret = read_from_fd_into_stock(fd, &stock);
-		if (ret == 0)
-		{
-			if ((endl_index = ft_strchr(stock, '\0')) == stock)
-				return (0);
-		}
-		else if (ret < 0)
-			return (-1);
-		else
-			endl_index = ft_strchr(stock, ENDL);
+		*line = ft_strdup(lst_tmp->content);
+		free(lst_tmp->content);
+		lst_tmp->content = ft_strnew(0);
+		return (1);
 	}
-	*line = ft_strsub(stock, 0, endl_index - stock);
-	if (!*line)
-		return (-1);
-	stock_rest(&stock, endl_index);
+	tmp = lst_tmp->content;
+	while (tmp[i] != '\n')
+		i++;
+	*line = ft_strsub(lst_tmp->content, 0, i);
+	tmp = ft_strsub(lst_tmp->content, i + 1, ft_strlen(lst_tmp->content) - i);
+	free(lst_tmp->content);
+	lst_tmp->content = tmp;
 	return (1);
+}
+
+ssize_t				ft_addbuff(int const fd, t_list *lst_tmp, ssize_t ret)
+{
+	char			buff[BUFF_SIZE + 1];
+	char			*tmp;
+
+	if ((ret = read(fd, buff, BUFF_SIZE)) > 0)
+	{
+		buff[ret] = '\0';
+		tmp = ft_strjoin(lst_tmp->content, buff);
+		free(lst_tmp->content);
+		lst_tmp->content = tmp;
+		ret = 1;
+	}
+	return (ret);
+}
+
+int					get_next_line(int const fd, char **line)
+{
+	static t_list	*stock = NULL;
+	t_list			*lst_tmp;
+	char			*str;
+	ssize_t			ret;
+
+	if (fd < 0 || !line)
+		return (-1);
+	lst_tmp = ft_lstupdate(fd, stock, &stock);
+	ret = 1;
+	while (ret >= 0)
+	{
+		str = ft_strchr(lst_tmp->content, '\n');
+		if (str || ret == 0)
+			return (ret = ft_retline_stockrest(line, &lst_tmp, ret));
+		ret = ft_addbuff(fd, lst_tmp, ret);
+		str = lst_tmp->content;
+		if (ret == 0 && str[0] == '\0')
+		{
+			free(lst_tmp->content);
+			free(stock);
+			return (0);
+		}
+	}
+	return (-1);
 }
