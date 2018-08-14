@@ -6,11 +6,11 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 16:53:30 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 17:08:52 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:38:34 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int		handle_ants(t_hex *env, char *line)
 {

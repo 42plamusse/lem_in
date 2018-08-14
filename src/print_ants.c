@@ -6,11 +6,11 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 17:47:41 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 17:48:18 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:38:43 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int	check_way_empty(t_hex *env, t_way *way, int len)
 {

@@ -6,11 +6,11 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:06:35 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 17:45:20 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:36:01 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int		cur_way_cpy(t_hex *env)
 {

@@ -6,11 +6,11 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 18:13:50 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 17:20:56 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:38:09 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int		check_existing_edge(t_vert *vert1, t_vert *vert2)
 {

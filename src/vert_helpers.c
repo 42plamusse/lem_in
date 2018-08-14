@@ -6,11 +6,11 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 14:38:19 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/10 14:38:55 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:38:48 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 t_vert	*get_vert_from_id(t_hex *env, int id)
 {

@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 08:35:25 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 18:03:53 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:51:11 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ static int	read_from_fd_into_stock(int const fd, char **stock)
 		*stock = nstr;
 	}
 	return (read_bytes);
+}
+
+static void	stock_rest(char **stock, char *endl_index)
+{
+	endl_index = ft_strdup(endl_index + 1);
+	free(*stock);
+	*stock = endl_index;
 }
 
 int			get_next_line(int const fd, char **line)
@@ -57,8 +64,6 @@ int			get_next_line(int const fd, char **line)
 	*line = ft_strsub(stock, 0, endl_index - stock);
 	if (!*line)
 		return (-1);
-	endl_index = ft_strdup(endl_index + 1);
-	free(stock);
-	stock = endl_index;
+	stock_rest(&stock, endl_index);
 	return (1);
 }

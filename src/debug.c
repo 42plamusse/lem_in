@@ -6,11 +6,11 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 18:00:18 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 17:47:12 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:39:28 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 void	print_hex(t_hex *env)
 {

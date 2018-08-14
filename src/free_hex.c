@@ -6,11 +6,11 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 16:59:28 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/12 17:49:38 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:40:02 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static void	free_verts(t_hex *env)
 {
