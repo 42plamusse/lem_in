@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:06:35 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/14 18:36:01 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/15 12:56:50 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ int				resolve_hex(t_hex *env)
 			ft_printf("\n");
 			print_ants(env);
 		}
+		else
+			return (ERROR);
 	}
 	return (SUCCESS);
 }

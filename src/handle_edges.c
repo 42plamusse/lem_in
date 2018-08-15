@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 18:13:50 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/14 18:38:09 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/15 12:41:25 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int		check_and_create(t_vert *vert1, t_vert *vert2, char *line)
 {
 	int	ret;
 
-	if (vert1 && vert2)
+	if (vert1 && vert2 && vert1 != vert2)
 	{
 		if (check_existing_edge(vert1, vert2) != ERROR)
 		{
@@ -107,6 +107,6 @@ int				handle_edges(t_hex *env, char *line)
 	vert1 = get_vert_from_name(env, tab[0]);
 	vert2 = get_vert_from_name(env, tab[1]);
 	ft_tabclr(tab);
-	check_and_create(vert1, vert2, line);
+	ret = check_and_create(vert1, vert2, line);
 	return (ret);
 }
