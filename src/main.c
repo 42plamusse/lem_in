@@ -6,7 +6,7 @@
 /*   By: plamusse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 17:46:24 by plamusse          #+#    #+#             */
-/*   Updated: 2018/08/15 12:59:13 by plamusse         ###   ########.fr       */
+/*   Updated: 2018/08/15 13:07:51 by plamusse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 static int	check_hex(t_hex *env)
 {
-	if (env->ants <= 0 || env->nbr_vert == 0 || env->start == 0 || env->end == 0)
+	if (env->ants <= 0 || env->nbr_vert == 0
+			|| env->start == 0 || env->end == 0)
 		return (ERROR);
 	return (SUCCESS);
 }
+
 static void	init_hex(t_hex *env)
 {
 	env->ants = INIT_ZERO;
